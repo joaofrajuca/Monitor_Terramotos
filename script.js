@@ -8,10 +8,11 @@ async function carregarTerramotos() {
     const resposta = await fetch(url);
     const dados = await resposta.json();
 
-    listaDiv.innerHTML = ""; // limpa antes de mostrar
+    listaDiv.innerHTML = "";
     document.getElementById("contador").textContent = "Total de terramotos: " + dados.features.length;
 
-    dados.features.forEach(eq => {
+    for (let i = 0; i < dados.features.length; i++) {
+        const eq = dados.features[i];
         const props = eq.properties;
         const coords = eq.geometry.coordinates;
 
@@ -20,7 +21,6 @@ async function carregarTerramotos() {
         const data = tempoRelativo(props.time);
         const link = props.url;
 
-        // Decide classe visual com base na magnitude
         let classe = "leve";
         if (magnitude >= 5) 
             classe = "forte";
@@ -36,12 +36,12 @@ async function carregarTerramotos() {
             Data/hora: ${data}<br>
             <a href="${link}" target="_blank">Mais detalhes</a>`;
         listaDiv.appendChild(div);
-    });
+    }
 
 } 
   catch (erro) 
   {
-    listaDiv.innerHTML = "❌ Erro ao carregar dados.";
+    listaDiv.innerHTML = "Erro ao carregar dados, tente novamente.";
     console.error(erro);
   }
   function tempoRelativo(timestamp) 
@@ -59,7 +59,7 @@ async function carregarTerramotos() {
     else if (minutos < 60) 
         return `há ${minutos} minutos`;
     else if (horas < 24) 
-         `há ${horas} horas`;
+        return `há ${horas} horas`;
     else
     return `há ${dias} dia${dias > 1 ? "s" : ""}`;
 }
