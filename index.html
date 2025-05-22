@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Monitor de Terramotos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+    }
+    .terramoto {
+      border: 1px solid #ccc;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-left: 5px solid red;
+    }
+    .forte {
+      border-left-color: red;
+    }
+    .moderado {
+      border-left-color: orange;
+    }
+    .leve {
+      border-left-color: green;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌍 Monitor de Terramotos </h1>
+  <p id="contador">Total de terramotos: 0</p>
+  <button onclick="carregarTerramotos()">🔄 Atualizar</button>
+  <div id="lista"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
