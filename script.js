@@ -21,15 +21,17 @@ async function carregarTerramotos() {
         const data = tempoRelativo(props.time);
         const link = props.url;
 
-        let classe = "leve";
-        if (magnitude >= 5) 
-            classe = "forte";
-        else if (magnitude >= 3) 
-            classe = "moderado";
+        let gravidade;
+        if (magnitude < 3) 
+            gravidade = "leve";
+        else if (magnitude <= 5) 
+            gravidade = "moderado";
+        else
+          gravidade = "forte";
 
         // Cria elemento HTML
         const div = document.createElement("div");
-        div.className = "terramoto " + classe;
+        div.className = "terramoto " + gravidade;
         div.innerHTML = 
             `<strong>${local}</strong><br>
             Magnitude: ${magnitude}<br>
@@ -44,10 +46,10 @@ async function carregarTerramotos() {
     listaDiv.innerHTML = "Erro ao carregar dados, tente novamente.";
     console.error(erro);
   }
-  function tempoRelativo(timestamp) 
+  function tempoRelativo(tempo) 
   {
     const agora = Date.now();
-    const diferenca = agora - timestamp;
+    const diferenca = agora - tempo;
 
     const segundos = Math.floor(diferenca / 1000);
     const minutos = Math.floor(segundos / 60);
