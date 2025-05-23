@@ -28,6 +28,24 @@
 <body>
   <h1>🌍 Monitor de Terramotos </h1>
   <p id="contador">Total de terramotos: 0</p>
+  <label for="filtroMagnitude">🔎 Magnitude mínima:</label>
+<input type="range" id="filtroMagnitude" min="0" max="10" step="0.1" value="0">
+<span id="valorMagnitude">0</span>
+
+<br><br>
+
+<label for="pesquisaLocal">📍 Procurar por local:</label>
+<input type="text" id="pesquisaLocal" placeholder="ex: Portugal">
+
+<br><br>
+
+<label for="ordenarPor">↕️ Ordenar por:</label>
+<select id="ordenarPor">
+  <option value="data">Data (mais recente primeiro)</option>
+  <option value="magnitude">Magnitude (maior primeiro)</option>
+</select>
+
+<hr>
   <button onclick="carregarTerramotos()">🔄 Atualizar</button>
   <div id="lista"></div>
 
